@@ -5,8 +5,18 @@
   import 'supplemental/asymmetric_view.dart';
 
   class HomePage extends StatelessWidget {
-    const HomePage({Key? key}) : super(key: key);
+    final Category category;
 
+    const HomePage({this.category = Category.all, Key? key}) : super(key: key);
+
+    @override
+    Widget build(BuildContext context) {
+      // TODO: Pass Category variable to AsymmetricView (104)
+      return AsymmetricView(
+        products: ProductsRepository.loadProducts(category),
+      );
+    }
+  }
     List<Card> _buildGridCards(BuildContext context) {
       List<Product> products = ProductsRepository.loadProducts(Category.all);
 
@@ -72,6 +82,7 @@
     @override
     Widget build(BuildContext context) {
       // TODO: Return an AsymmetricView (104)
+      return AsymmetricView(products: ProductsRepository.loadProducts(Category.all));
       // TODO: Pass Category variable to AsymmetricView (104)
       return Scaffold(
         appBar: AppBar(
@@ -106,4 +117,4 @@
         resizeToAvoidBottomInset: false,
       );
     }
-  }
+
